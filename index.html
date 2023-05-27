@@ -13,10 +13,12 @@
     <title>TODO App</title>
   </head>
   <body>
-    <div class="all">
-      <div class="sidebar">
+    <main>
+      <aside>
         <div class="categories btns">
-          <button><i class="fa-solid fa-inbox"></i> Inbox</button>
+          <button aria-selected="true">
+            <i class="fa-solid fa-inbox"></i> Inbox
+          </button>
           <button><i class="fa-solid fa-star"></i> Today</button>
           <button><i class="fa-solid fa-calendar-week"></i> Upcoming</button>
         </div>
@@ -27,17 +29,32 @@
             <span><i class="fa-solid fa-x"></i></span>
           </button>
         </div>
-      </div>
-      <div class="container">
+      </aside>
+      <section>
         <h1>Inbox</h1>
         <div class="items">
           <input type="checkbox" />
-          <div>
-            <h5>Do this</h5>
-            <p><i class="fa-solid fa-business-time"></i> 10:00 PM</p>
+          <div class="item">
+            <h2>Do this</h2>
+            <div>
+              <p>Dec 12th</p>
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash"></i>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+        <div class="items">
+          <input type="checkbox" />
+          <div class="item">
+            <h2>Do that</h2>
+            <div>
+              <p>No Date</p>
+              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   </body>
 </html>
