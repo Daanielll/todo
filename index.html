@@ -14,53 +14,76 @@
   </head>
   <body>
     <main>
+            <div id="prompt-bg">
+              <div class="prompt">
+                <form id="form" action="#">
+                  <div class="form-div"><input aria-selected="false" name="title" id="title" type="text" required>
+                  <label for="title">Title</label></div>
+                  <div class="form-div"><textarea aria-selected="false" name="details" id="details" cols="30" rows="10"></textarea>
+                  <label for="details">Details</label></div>
+                  <div class="form-div">
+                  <input type="date" id="date">
+                  <label for="date">Due Date:</label></div>
+                  
+                  <div class="priority">
+                    <h5>Priority:</h5>
+                    <button type="button" name="pLow" id="p-low" aria-checked="true">Low</button>
+                    <button type="button" name="pMedium" id="p-medium" aria-checked="false">Medium</button>
+                    <button type="button" name="pHigh" id="p-high" aria-checked="false">High</button>
+                  </div>
+                  <button id="add-todo" type="submit">Add TODO</button>
+                </form>
+              </div>
+            </div>
+            
       <aside>
+        <button id="new-btn" aria-valuetext="2"><i class="fa-solid fa-plus"></i></button>
+
         <div class="categories btns">
-          <button aria-selected="true">
-            <i class="fa-solid fa-inbox"></i> Inbox
-          </button>
-          <button><i class="fa-solid fa-star"></i> Today</button>
-          <button><i class="fa-solid fa-calendar-week"></i> Upcoming</button>
+          <button class="bs" aria-selected="true"><i class="fa-solid fa-inbox"></i>Inbox</button>
+          <button class="bs"><i class="fa-solid fa-star" ></i>Today</button>
+          <button class="bs"><i class="fa-solid fa-calendar-week" ></i>Upcoming</button>
         </div>
-        <h1>Projects <i class="fa-solid fa-chevron-down"></i></h1>
-        <div class="all-projects">
-          <div class="projects btns">
-            <button>
-              <i class="fa-solid fa-list"></i> Name
-              <span><i class="fa-solid fa-x"></i></span>
+        <div id="projects-div">
+            <h1>Projects <span id="new-projects">New</span></h1>
+          <div  id="projects-tab"><i class="fa-solid fa-chevron-down"></i></div> </i></div>
+        
+        <div class="all-projects" aria-hidden="false">
+          
+            
+          </div>
+          <template id="project-template">
+          <div class="projects btns bs">
+            <button aria-selected="false">
+              <i class="fa-solid fa-list"></i> <span id="name-span" name="name"></span> 
+              <span id="chevron-span"><i class="fa-solid fa-x"></i></span>
             </button>
           </div>
-          <div class="projects btns">
-            <button>
-              <i class="fa-solid fa-list"></i> Project
-              <span><i class="fa-solid fa-x"></i></span>
-            </button>
-          </div>
-        </div>
+          </template>
+          <form name="myForm" class="new-project-prompt" onsubmit="return validateForm()">
+            <input name="newProjectName" type="text"
+            oninput="this.setCustomValidity('')" required>
+            <div><button type="button" name="cancel">Cancel</button>
+            <button type="submit">Submit</button></div>
+        </form>
       </aside>
       <section>
-        <h1>Inbox</h1>
-        <div class="items">
-          <input type="checkbox" />
-          <div class="item">
-            <h2>Do this</h2>
-            <div>
-              <p>Dec 12th</p>
-              <i class="fa-solid fa-pen-to-square"></i>
-              <i class="fa-solid fa-trash"></i>
+        <h1 id="sec-title">Inbox</h1>
+        <ul class="items-all">
+          <template id="item-template">
+            <li class="items" aria-checked="false">
+            <input type="checkbox" class="checkbox" />
+            <div class="item">
+              <h2></h2>
+              <div>
+                <p></p>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash"></i>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="items">
-          <input type="checkbox" />
-          <div class="item">
-            <h2>Do that</h2>
-            <div>
-              <p>No Date</p>
-              <i class="fa-solid fa-pen-to-square"></i>
-              <i class="fa-solid fa-trash"></i>
-            </div>
-          </div>
+          </li></template>
+
+        </ul>
         </div>
       </section>
     </main>

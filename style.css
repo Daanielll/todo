@@ -1,6 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 * {
   box-sizing: border-box;
-  font-family: Helvetica, sans-serif;
+  font-family: "Poppin", Helvetica, sans-serif;
 }
 body {
   margin: 0;
@@ -8,29 +9,90 @@ body {
 }
 :root {
   --light-grey: rgb(232, 232, 232);
+  --aside-color: #f2f2f2;
   --grey: rgb(211, 211, 211);
-  --text: rgb(41, 41, 41);
+  --text: #333333;
+  --red: rgb(224, 60, 50);
+  --yellow: rgb(255, 211, 1);
+  --green: rgb(123, 182, 98);
+  --button-color: #4caf50;
+  --new-btn-left: clamp(5px, 2%, 1.5rem);
 }
 main {
   display: grid;
   height: 100vh;
-  grid-template-columns: minmax(20rem, 1fr) 5fr;
+  grid-template-columns: minmax(18rem, 1fr) 5fr;
   color: var(--text);
+  position: relative;
 }
 aside {
-  background-color: #eaeaeab7;
+  background-color: var(--aside-color);
   padding: max(1rem, 10%);
   display: flex;
   flex-direction: column;
 }
-aside > h1 i {
-  font-size: 0.9rem;
+
+#new-btn {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  bottom: 4vh;
+  left: var(--new-btn-left);
+  border-radius: 50px;
+  border: none;
+  background-color: var(--button-color);
+  color: var(--light-grey);
+  font-size: 2.2rem;
+  cursor: pointer;
+  z-index: 100;
+  transition: transform 300ms ease;
 }
-aside h1 {
+
+#new-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 1px 3px 3px #317433;
+}
+
+#projects-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#projects-div div {
+  padding: 8px 2px 8px 8px;
+  display: none;
+  color: rgb(161, 161, 161);
   cursor: pointer;
 }
+#projects-div:hover div {
+  display: block;
+}
+#projects-div:hover span {
+  display: inline-block;
+}
+aside h1 {
+  font-size: 1.3rem;
+}
+aside h1 > span {
+  box-sizing: content-box;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 1px 10px;
+  margin-left: 5px;
+  border-radius: 0.2rem;
+  background-color: var(--grey);
+  cursor: pointer;
+  display: none;
+}
+
 .all-projects {
-  transition: display 1s ease-in-out;
+  overflow: hidden;
+  max-height: 0;
+  transition: all 400ms ease;
+}
+.all-projects[aria-hidden="false"] {
+  max-height: 50vh;
+  transition: all 1s ease;
 }
 .fa-star {
   color: rgb(255, 208, 0);
@@ -60,6 +122,8 @@ aside h1 {
   text-align: start;
   cursor: pointer;
   color: var(--text);
+  align-items: center;
+  background-color: transparent;
 }
 .btns > button:hover {
   transform: scale(1.02);
@@ -69,29 +133,53 @@ aside h1 {
   transform: scale(1.02);
   background-color: var(--grey);
 }
+.projects {
+  margin-bottom: 0.2rem;
+  border-radius: 0.61rem;
+}
 .projects > button {
   position: relative;
+  border-radius: 0.6rem;
 }
-.projects > button span {
+.projects > button #chevron-span {
   display: none;
   font-size: 0.9em;
   position: absolute;
   left: 92%;
   color: rgb(63, 63, 63);
 }
-.projects > button:hover span {
+.projects > button:hover #chevron-span {
   display: block;
 }
+#name-span {
+  display: inline-block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.projects > button:hover #name-span {
+  width: 160px;
+  text-overflow: clip;
+  overflow: hidden;
+}
 section {
-  padding: 2rem clamp(1rem, 10%, 20rem);
+  padding: 0 clamp(1rem, 10%, 20rem);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  overflow-y: auto;
 }
 section h1 {
+  box-sizing: border-box;
   padding-bottom: 0.5rem;
   border-bottom: 2px solid rgb(211, 211, 211);
+  position: sticky;
+  background-color: #fff;
+  top: 0;
+  padding-top: 1rem;
+  z-index: 100;
+  transition: none;
 }
+
 section input[type="checkbox"] {
   appearance: none;
   -moz-appearance: none;
@@ -123,6 +211,10 @@ section input[type="checkbox"]:checked {
 section input[type="checkbox"]:checked::after {
   display: block;
 }
+.items-all {
+  margin: 0;
+  padding: 0;
+}
 .items {
   display: flex;
   align-items: center;
@@ -132,10 +224,11 @@ section input[type="checkbox"]:checked::after {
   border-radius: 0.15rem;
   color: var(--text);
   border-left: 5px solid red;
+  margin-block: 0.5rem;
 }
 .items:hover {
   transition: transform 800ms ease-out;
-  transform: scale(1.004);
+  transform: scale(1.005);
   box-shadow: 0 1px 3px var(--grey);
 }
 .item {
@@ -161,4 +254,199 @@ section input[type="checkbox"]:checked::after {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+}
+.prompt {
+  position: relative;
+  width: clamp(350px, 60%, 70rem);
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.3rem;
+  z-index: 10001;
+  transition: opacity 500ms ease;
+}
+#prompt-bg {
+  position: absolute;
+  display: flex;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.298);
+  backdrop-filter: blur(3px);
+  transition: opacity 500ms ease-in;
+}
+.prompt form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  color: var(--text);
+}
+.prompt input {
+  height: 2rem;
+  border-radius: 0.3rem;
+  border: 2px solid var(--grey);
+  padding: 0.4rem;
+}
+.prompt input[type="text"],
+.prompt textarea {
+  width: 100%;
+}
+.prompt textarea {
+  border-radius: 0.3rem;
+  border: 2px solid var(--grey);
+  padding: 0.4rem;
+  resize: none;
+}
+.form-div {
+  position: relative;
+}
+.prompt label {
+  font-size: 1rem;
+  position: absolute;
+  left: 0.6rem;
+  transition: all 300ms ease;
+}
+.prompt input[type="text"] ~ label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prompt input[type="text"]:focus ~ label,
+.prompt input[type="text"][aria-selected="true"] ~ label {
+  transform: translateY(-2.2rem);
+  font-size: 0.85rem;
+  left: 0.2rem;
+}
+.prompt input[type="date"] ~ label,
+.prompt textarea:focus ~ label,
+.prompt textarea[aria-selected="true"] ~ label {
+  transform: translateY(-1.2rem);
+  font-size: 0.85rem;
+  left: 0.2rem;
+}
+.prompt input[type="text"]:focus ~ label::after,
+.prompt input[type="text"][aria-selected="true"] ~ label::after {
+  content: "*";
+}
+.prompt input:focus {
+  border-color: blue;
+}
+label[for="details"] {
+  top: 3px;
+}
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.priority * {
+  margin: 0;
+}
+.priority h5 {
+  font-size: 1rem;
+  font-weight: 400;
+}
+.priority button {
+  padding: 2px 10px;
+  border: 2px solid grey;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+#p-low {
+  border-color: var(--green);
+}
+#p-low:hover,
+#p-low[aria-checked="true"] {
+  background-color: var(--green);
+  color: #fff;
+}
+#p-medium {
+  border-color: var(--yellow);
+}
+#p-medium:hover,
+#p-medium[aria-checked="true"] {
+  background-color: var(--yellow);
+  color: #fff;
+}
+#p-high {
+  border-color: var(--red);
+}
+#p-high:hover,
+#p-high[aria-checked="true"] {
+  background-color: var(--red);
+  color: #fff;
+}
+.prompt button[type="submit"] {
+  align-self: center;
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: 0.3rem;
+  background-color: #fff;
+  border: 2px solid rgb(37, 152, 142);
+  color: rgb(37, 152, 142);
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+.prompt button[type="submit"]:hover {
+  color: #fff;
+  background-color: rgb(37, 152, 142);
+}
+.items[aria-checked="true"] h2 {
+  text-decoration: line-through;
+  transition: all 400ms ease;
+}
+.items[aria-checked="true"] {
+  opacity: 45%;
+  transition: all 400ms ease-in-out;
+}
+.items[aria-checked="false"] {
+  opacity: 100%;
+  transition: all 400ms ease-in-out;
+}
+.new-project-prompt {
+  background-color: transparent;
+  padding: clamp(0.5rem, 10%, 2rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.3rem;
+  gap: 1rem;
+  display: none;
+}
+.new-project-prompt input {
+  width: 100%;
+  height: 2rem;
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 0.3rem;
+}
+.new-project-prompt input:focus {
+  outline: 1px solid var(--text);
+}
+.new-project-prompt div {
+  display: flex;
+  gap: 1rem;
+}
+.new-project-prompt button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  color: #fff;
+}
+.new-project-prompt button:hover {
+  transform: scale(1.05);
+  transition: transform 1s ease;
+}
+.new-project-prompt button[type="button"] {
+  background-color: var(--red);
+}
+.new-project-prompt button[type="submit"] {
+  background-color: var(--green);
 }
